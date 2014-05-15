@@ -10,8 +10,9 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+from config import DB_SERVER, ENV
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-
+print "BASE_DIR  ", BASE_DIR
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
@@ -55,11 +56,19 @@ WSGI_APPLICATION = 'agenda.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
+name =  os.path.join(BASE_DIR, 'db.sqlite3')
+if DB_SERVER[ENV]["name"]:
+    name =  DB_SERVER[ENV]["name"]
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': DB_SERVER[ENV]["engine"],
+        'NAME': name,
+      'USER': DB_SERVER[ENV]["user"],                      # Not used with sqlite3.
+        'PASSWORD': DB_SERVER[ENV]["password"],                  # Not used with sqlite3.
+        'HOST': DB_SERVER[ENV]["host"],                      # Set to empty string for localhost. Not used with sqlite3.
+        'PORT': DB_SERVER[ENV]["port"],                      # Set to empty string for default. Not used with sqlite3.
+   
     }
 }
 

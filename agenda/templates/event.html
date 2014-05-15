@@ -1,4 +1,7 @@
 {% extends "base.html" %}
+{% block cabecalho %}
+        <title>{{% event.name %}}</title>
+    {% endblock %}
 {% block corpo %}
 {% if event %}
 		<ul>
@@ -9,7 +12,7 @@
          <li><img src="/media/{{ event.image }}"/> <br /></li>
        	 {% endif %}
        	 {% if event.link %}
-       	 <li><a href="{{ event.link }}"></a> </li>
+       	 <li><a href="{{ event.link }}">Clique aqui para ver o site do evento</a> </li>
        	 {% endif %}
        </ul>
 {% endif %}

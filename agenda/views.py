@@ -14,7 +14,6 @@ def index(request):
 
 def detail(request, event_id):
 	
-	print(dir(Event))
 	template = loader.get_template('event.html')
 	event = Event.objects.filter(id = event_id)
 	context = RequestContext(request, {
@@ -23,8 +22,6 @@ def detail(request, event_id):
 	return HttpResponse(template.render(context))
 
 def about(request):
-	context = RequestContext(request, {
-        'event': "",
-    })
+	context = RequestContext(request)
 	template = loader.get_template('about.html')
 	return HttpResponse(template.render(context))
