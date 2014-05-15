@@ -1,9 +1,16 @@
+{% extends "base.html" %}
+{% block corpo %}
+
 {% if latest_event_list %}
     <ul>
     {% for event in latest_event_list %}
-        <li><a href="/events/{{ event.id }}/">{{ event.name }}</a></li>
+        <li>
+         <a href="/events/{{ event.id }}/">{{ event.name }}</a><br />
+         <a href="/events/{{ event.id }}/">{{ event.short_description }}</a>
+    	</li>
     {% endfor %}
     </ul>
 {% else %}
     <p>No events are available.</p>
 {% endif %}
+{% endblock %}

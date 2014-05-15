@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block corpo %}
+{% if event %}
+		<ul>
+		 <li>Data: {{ event.date }} <br /> </li>
+         <li>Evento: {{ event.name }}<br /></li>
+         <li>Descri&ccedil;&atilde;o: {{ event.full_description }}<br /></li>
+         {% if event.image %}
+         <li><img src="/media/{{ event.image }}"/> <br /></li>
+       	 {% endif %}
+       	 {% if event.link %}
+       	 <li><a href="{{ event.link }}"></a> </li>
+       	 {% endif %}
+       </ul>
+{% endif %}
+{% endblock %}
